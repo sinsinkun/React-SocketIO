@@ -20,13 +20,19 @@ app.get('*', (req, res) => {
 
 // socketIO events
 io.on('connection', (socket) => {
+  // event: client connects to server
   console.log('a user connected', socket.id);
-
   socket.emit("connection", "> Echo from server <");
-  
+  // event: client disconnects from server
   socket.on('disconnect', () => {
     console.log(`user ${socket.id} disconnected`);
   })
+  // event: client sends msg
+  socket.on('msg', (data) => {
+    console.log("ping from client", data);
+    socket.emit("msgex", "message received");
+  })
+
 });
 
 // open server

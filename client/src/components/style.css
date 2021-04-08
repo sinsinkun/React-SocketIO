@@ -15,9 +15,11 @@ code {
 .main-card.MuiPaper-rounded {
   padding:0.5rem;
   background-color:rgb(233, 193, 193);
+  text-align: center;
 }
 
 .chatroom-card.MuiPaper-rounded {
   padding:0.5rem;
   background-color:rgb(203, 218, 241);
+  text-align: center;
 }
