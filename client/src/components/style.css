@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(82, 94, 110);
+  overflow-x: hidden;
 }
 
 code {
@@ -14,7 +16,7 @@ code {
 
 .main-card.MuiPaper-rounded {
   padding:0.5rem;
-  background-color:rgb(233, 193, 193);
+  background-color:rgb(193, 233, 233);
   text-align: center;
 }
 

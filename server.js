@@ -22,7 +22,7 @@ app.get('*', (req, res) => {
 io.on('connection', (socket) => {
   // event: client connects to server
   console.log('a user connected', socket.id);
-  socket.emit("connection", "> Echo from server <");
+  socket.emit("msgex", { user:"SYS", msg:"> Connected to server <"});
   // event: client disconnects from server
   socket.on('disconnect', () => {
     console.log(`user ${socket.id} disconnected`);
@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
   // event: client sends msg
   socket.on('msg', (data) => {
     console.log("ping from client", data);
-    socket.emit("msgex", "message received");
+    socket.emit("msgex", { user:data.user, msg:data.msg });
   })
 
 });
