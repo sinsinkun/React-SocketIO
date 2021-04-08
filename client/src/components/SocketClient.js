@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import socketClient from 'socket.io-client';
-const ENDPOINT = "http://127.0.0.1:8080";
 
 function SocketClient() {
   
@@ -8,11 +7,14 @@ function SocketClient() {
 
   useEffect(() => {
     // establishing socketIO connection
-    const socket = socketClient(ENDPOINT);
-    socket.on('connection', () => {
+    const socket = socketClient();
+    socket.on('connection', (data) => {
       console.log("received ping from server");
-      setRes("echo");
+      setRes(data);
     })
+    
+    // disconnect on component unload
+    return () => socket.disconnect();
   },[])
 
   return res;

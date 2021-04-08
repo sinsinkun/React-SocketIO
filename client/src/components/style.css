@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.main-card.MuiPaper-rounded {
+  padding:0.5rem;
+  background-color:rgb(233, 193, 193);
+}
+
+.chatroom-card.MuiPaper-rounded {
+  padding:0.5rem;
+  background-color:rgb(203, 218, 241);
+}

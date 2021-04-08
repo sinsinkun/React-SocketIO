@@ -1,9 +1,14 @@
-import { Card } from "@material-ui/core";
+import { Card, Typography } from "@material-ui/core";
+import SocketClient from './SocketClient';
 
 function Chatroom() {
+
+  const socketRes = SocketClient();
+
   return(
-    <Card style={{padding:"0.5rem", backgroundColor:"rgb(220,220,220)"}}>
-      Chat
+    <Card className="chatroom-card">
+      <Typography>Chat</Typography>
+      <Typography>{socketRes}</Typography>
     </Card>
   )
 }

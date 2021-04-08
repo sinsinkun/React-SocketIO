@@ -1,10 +1,10 @@
-import { Card } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 
 function Main() {
   return(
-    <Card style={{padding:"0.5rem", backgroundColor:"rgb(220,220,220)"}}>
+    <Paper classes={{root:"main-card"}}>
       App
-    </Card>
+    </Paper>
   )
 }
 
