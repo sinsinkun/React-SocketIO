@@ -2,7 +2,8 @@ import { createContext, useReducer, useContext, useEffect } from "react";
 
 const initialData = {
   winX:window.innerWidth, 
-  winY:window.innerHeight
+  winY:window.innerHeight,
+  openNavExt:false
 };
 
 /*! IMPORTANT all your reducer functionality goes here */
@@ -10,6 +11,8 @@ const dataReducer = (state, action) => {
   switch (action.do) {
   case "resize":
     return {...state, winX:window.innerWidth, winY:window.innerHeight};
+  case "nav-ext":
+    return {...state, openNavExt: !state.openNavExt};
   default:
     throw new Error(`Invalid action type: ${action.type}`);
   }

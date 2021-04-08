@@ -1,20 +1,28 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import './components/style.css';
 import { StoreProvider } from './components/GlobalStore';
+import Navbar from './components/Navbar';
+import { Container } from '@material-ui/core'
+import Main from './components/Main';
+import Chatroom from './components/Chatroom';
 
 function App() {
   return (
-    <div className="App">
-      <StoreProvider>
-        <Router>
-          {/* Navbar */}
-          <Switch>
+    <StoreProvider>
+      <Router>
+        <Navbar />
+
+        <Switch>
+          <Container maxWidth='md' className="App" style={{marginTop:"0.8rem"}}>
             {/* Content to switch between */}
-            <Route>App</Route>
-          </Switch>
-          {/* Footer */}
-        </Router>
-      </StoreProvider>
-    </div>
+            <Route path="/main"><Main /></Route>
+            <Route exact path="/"><Chatroom /></Route>
+          </Container>
+        </Switch>
+
+        {/* Footer */}
+      </Router>
+    </StoreProvider>
   );
 }
 
