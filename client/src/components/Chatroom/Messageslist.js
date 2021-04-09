@@ -9,19 +9,23 @@ function MessagesList(props) {
 
   useEffect(() => {
     let newMsgs = msgs;
-    if (props.res) newMsgs.push(props.res);
+    if (props.rMsg) newMsgs.push(props.rMsg);
     if (newMsgs.length > 20) newMsgs.shift();
     setMsgs([...newMsgs]);
-    setInput("");
     // eslint-disable-next-line
-  }, [props.res])
+  }, [props.rMsg])
 
   useEffect(() => {
     endOfMsgs.current.scrollIntoView();
   })
 
   function pressEnter(e) {
-    if (e.key === "Enter") props.sendMsg(input);
+    if (e.key === "Enter") sendMsg();
+  }
+
+  function sendMsg() {
+    props.sendMsg(input);
+    setInput("");
   }
 
   return(
@@ -43,7 +47,7 @@ function MessagesList(props) {
           </div>
         </Grid>
         <Grid item>
-          <Button variant="contained" onClick={() => props.sendMsg(input)} color="secondary" style={{marginTop:"0.3rem"}}>Send</Button>
+          <Button variant="contained" onClick={sendMsg} color="secondary" style={{marginTop:"0.3rem"}}>Send</Button>
         </Grid>
       </Grid>
 

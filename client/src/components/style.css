@@ -91,3 +91,8 @@ code {
   border-left: 1px solid rgba(53, 55, 58, 0.5);
   text-align: right;
 }
+
+.user-col .MuiListItem-root {
+  display:block;
+  text-align: right;
+}
