@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 8080;
 // socketIO setup
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+let onlineUsers = [];
+let rooms = ["Lobby"];
 
 // fetch POST handling
 app.use(express.urlencoded({ extended: true }));
@@ -22,7 +24,7 @@ app.get('*', (req, res) => {
 io.on('connection', (socket) => {
   // event: client connects to server
   console.log('a user connected', socket.id);
-  socket.emit("msgex", { user:"SYS", msg:"> Connected to server <"});
+  io.emit("msgex", { user:"SYS", msg:"> Connected to server <"});
   // event: client disconnects from server
   socket.on('disconnect', () => {
     console.log(`user ${socket.id} disconnected`);
@@ -30,7 +32,7 @@ io.on('connection', (socket) => {
   // event: client sends msg
   socket.on('msg', (data) => {
     console.log("message from client", data);
-    socket.emit("msgex", { user:data.user, msg:data.msg });
+    io.emit("msgex", { user:data.user, msg:data.msg });
   })
 
 });
