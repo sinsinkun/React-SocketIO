@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
   })
   // event: client sends msg
   socket.on('msg', (data) => {
-    console.log("ping from client", data);
+    console.log("message from client", data);
     socket.emit("msgex", { user:data.user, msg:data.msg });
   })
 

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useHistory } from "react-router-dom";
-import { Card, Typography, Container, Grid } from "@material-ui/core";
+import { Card, Container, Grid } from "@material-ui/core";
 import socketIO from 'socket.io-client';
 import { useStoreContext } from "../GlobalStore";
 import MessagesList from './Messageslist';
@@ -27,12 +27,12 @@ function Chatroom() {
   },[])
 
   function sendMsg(msg) {
+    if (msg === "") return;
     socket.current.emit("msg", {user:store.user, msg:msg});
   }
 
   if (store.user) return (
     <Container maxWidth="xl" disableGutters>
-      <Typography variant="h4" style={{textAlign:"center"}}>Hello, {store.user}</Typography>
       <Grid container spacing={1} fullWidth>
         <Grid item md={3}><RoomList /></Grid>
         <Grid item xs md={6}><MessagesList res={res} sendMsg={sendMsg} /></Grid>
