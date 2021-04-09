@@ -34,6 +34,38 @@ code {
   height: calc(100vh - 50px);
   padding: 0.5rem !important;
   border-right: 2px solid rgba(64, 67, 70, 0.25);
+  position: relative;
+}
+
+.room-btn {
+  cursor: pointer;
+}
+
+.room-btn:hover {
+  background-color: rgb(76, 78, 82);
+}
+
+.room-tab {
+  position: absolute;
+  z-index: 20;
+  background-color: rgb(59, 67, 82);
+  top: 50px;
+  left: 0;
+  width: 60vw;
+  max-width: 280px;
+  color: rgb(240, 248, 255);
+  height: calc(100vh - 68px);
+  padding: 0.5rem;
+}
+
+.room-tab-bg {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 68px);
+  padding: 0.5rem;
+  z-index: 15;
 }
 
 /* ---------------------- */
@@ -47,6 +79,8 @@ code {
 .msg-list {
   height: calc(100vh - 115px);
   overflow-y: auto;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
 }
 
 .msg-list::-webkit-scrollbar {
@@ -95,4 +129,41 @@ code {
 .user-col .MuiListItem-root {
   display:block;
   text-align: right;
+}
+
+.user-btn {
+  cursor: pointer;
+}
+
+.user-btn:hover {
+  background-color: rgb(76, 78, 82);
+}
+
+.user-tab {
+  position: absolute;
+  z-index: 20;
+  background-color: rgb(59, 67, 82);
+  top: 50px;
+  right: 0;
+  width: 60vw;
+  max-width: 280px;
+  text-align: right;
+  color: rgb(240, 248, 255);
+  height: calc(100vh - 68px);
+  padding: 0.5rem;
+}
+
+.user-tab .MuiListItem-root {
+  display:block;
+  text-align: right;
+}
+
+.user-tab-bg {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  width: 100vw;
+  height: calc(100vh - 68px);
+  padding: 0.5rem;
+  z-index: 15;
 }

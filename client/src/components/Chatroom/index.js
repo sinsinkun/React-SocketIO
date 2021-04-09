@@ -50,9 +50,9 @@ function Chatroom() {
   if (store.user) return (
     <Container maxWidth="xl" disableGutters>
       <Grid container spacing={0} fullWidth>
-        <Grid item md={3}><RoomList refresh={newRooms} joinRoom={joinRoom} /></Grid>
-        <Grid item xs md={6}><MessagesList rMsg={rMsg} refresh={newMsgs} sendMsg={sendMsg} /></Grid>
-        <Grid item sm={4} md={3}><Userlist room={store.room} refresh={newUsers} /></Grid>
+        <Grid item xs={1} md={3} lg={2}><RoomList refresh={newRooms} joinRoom={joinRoom} /></Grid>
+        <Grid item xs={10} md={6} lg={8}><MessagesList rMsg={rMsg} refresh={newMsgs} sendMsg={sendMsg} /></Grid>
+        <Grid item xs={1} md={3} lg={2}><Userlist refresh={newUsers} /></Grid>
       </Grid>
     </Container>
   )
