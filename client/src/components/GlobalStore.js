@@ -5,6 +5,7 @@ const initialData = {
   winX:window.innerWidth, 
   winY:window.innerHeight,
   user:"",
+  room:"",
   theme:createMuiTheme({
     palette: {
       primary: { main: "#673ab7" },
@@ -20,7 +21,7 @@ const reduceFn = (state, action) => {
   case "resize":
     return {...state, winX:window.innerWidth, winY:window.innerHeight};
   case "signin":
-    return {...state, user:action.name};
+    return {...state, user:action.name, room:"Lobby"};
   default:
     throw new Error(`Invalid action type: ${action.do}`);
   }

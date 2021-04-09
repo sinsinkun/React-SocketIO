@@ -33,10 +33,10 @@ function Chatroom() {
 
   if (store.user) return (
     <Container maxWidth="xl" disableGutters>
-      <Grid container spacing={1} fullWidth>
+      <Grid container spacing={0} fullWidth>
         <Grid item md={3}><RoomList /></Grid>
         <Grid item xs md={6}><MessagesList res={res} sendMsg={sendMsg} /></Grid>
-        <Grid item sm={3} md={3}><Userlist /></Grid>
+        <Grid item sm={4} md={3}><Userlist /></Grid>
       </Grid>
     </Container>
   )

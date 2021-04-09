@@ -1,8 +1,10 @@
+import { Container, Typography } from "@material-ui/core";
+
 function Userlist() {
   return(
-    <div>
-      User list
-    </div>
+    <Container className="user-col">
+      <Typography variant="h6">User List</Typography>
+    </Container>
   )
 }
 
