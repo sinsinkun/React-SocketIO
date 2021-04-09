@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 8080;
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 let onlineUsers = [];
-let rooms = ["Lobby"];
+let rooms = ["Lobby", "Other"];
 
 // fetch POST handling
 app.use(express.urlencoded({ extended: true }));
@@ -38,7 +38,9 @@ app.get('*', (req, res) => {
   res.sendFile('./client/build/index.html', {root:"."});
 });
 
-// socketIO events
+/* ----------------------- */
+/* --- SocketIO Events --- */
+/* ----------------------- */
 io.on('connection', (socket) => {
   // event: client connects to server
   console.log(`[SocketIO]: user ${socket.id} connected`);
@@ -48,7 +50,9 @@ io.on('connection', (socket) => {
     onlineUsers.push({ id:socket.id, name:data.user, room:data.room });
     socket.join(data.room);
     // send msg to room
-    io.to(data.room).emit("msg", { user:"SYS", msg:`> ${data.user} has joined <`});
+    io.emit("refreshUsers");
+    socket.emit("refreshRooms");
+    io.to(data.room).emit("msg", { user:"SYS", msg:`> ${data.user} has joined <` });
   });
 
   // event: client disconnects from server
@@ -63,6 +67,7 @@ io.on('connection', (socket) => {
         break;
       }
     }
+    io.emit("refreshUsers");
   })
 
   // event: join rooms
@@ -70,17 +75,33 @@ io.on('connection', (socket) => {
     console.log(`[SocketIO]: user ${data.user} joined room ${data.room}`);
     socket.join(data.room);
     // update onlineUsers
-    const thisUser = onlineUsers.filter(user => user.id === socket.id);
-    thisUser.room = data.room;
+    for (let i=0; i<onlineUsers.length; i++) {
+      if (onlineUsers[i].id === socket.id) {
+        // change room
+        onlineUsers[i].room = data.room;
+        break;
+      }
+    }
+    io.emit("refreshUsers");
+    socket.emit("refreshMsgs");
     // send msg to room
     io.to(data.room).emit("msg", { user:"SYS", msg:`> ${data.user} has joined <`});
+    
   })
 
   // event: leave rooms
   socket.on('leave', (data) => {
     console.log(`[SocketIO]: user ${data.user} left room ${data.room}`);
+    socket.leave(data.room);
     // send msg to room
     io.to(data.room).emit("msg", { user:"SYS", msg:`> ${data.user} has left <`});
+  })
+
+  // event: refresh API info
+  socket.on('refresh', (room) => {
+    console.log(`[SocketIO]: new room ${room} created`);
+    io.emit("refreshRooms");
+    io.emit("refreshUsers");
   })
 
   // event: client sends msg

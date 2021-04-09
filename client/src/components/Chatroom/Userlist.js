@@ -6,9 +6,9 @@ function Userlist(props) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    if (props.rMsg && props.rMsg.user === "SYS") getUsers();
+    getUsers();
     // eslint-disable-next-line
-  },[props.rMsg])
+  },[props.refresh])
 
   async function getUsers() {
     const usersData = await fetch(`/api/users/${props.room}`).then(r => r.json());

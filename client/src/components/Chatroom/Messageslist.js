@@ -8,6 +8,10 @@ function MessagesList(props) {
   const endOfMsgs = useRef();
 
   useEffect(() => {
+    setMsgs([]);
+  }, [props.refresh])
+
+  useEffect(() => {
     let newMsgs = msgs;
     if (props.rMsg) newMsgs.push(props.rMsg);
     if (newMsgs.length > 20) newMsgs.shift();
