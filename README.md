@@ -1,5 +1,8 @@
 # React-SocketIO
 
+Live link: https://react-im.herokuapp.com/
+
+
 Focus of this project: testing socket implementation under the react framework
 
 (HTML implementation of socketIO is fairly straight forward, but due to
